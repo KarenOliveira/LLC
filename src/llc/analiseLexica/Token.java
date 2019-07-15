@@ -1,4 +1,4 @@
-package analiseLexica;
+package llc.analiseLexica;
 
 public class Token {
 
