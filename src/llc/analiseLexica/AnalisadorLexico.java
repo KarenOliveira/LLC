@@ -1,4 +1,4 @@
-package analiseLexica;
+package llc.analiseLexica;
 
 import java.io.File;
 import java.nio.file.Files;
