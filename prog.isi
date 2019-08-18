@@ -1,0 +1,17 @@
+programa
+declare num a,num b,num c.
+	escreva("Meu primeiro programa em ISI").
+	escreva("Digite o valor de A").
+	leia( a ).
+	escreva("Digite o valor de B").
+	leia( b ).
+	escreva("Digite o valor de C").
+    leia( c ).	
+	escreva("Os valores que foram digitados").
+	se (a == 2) entao
+	escreva(a).
+	senao {escreva(b).}
+	escreva(b).
+	escreva( c ).
+	
+fimprog
