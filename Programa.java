@@ -24,9 +24,6 @@ public class Programa{
 	
 	public void setVariaveis(Map<String,String> lista){
 		variaveis.putAll(lista);
-		System.out.println(variaveis.get("a"));
-System.out.println(variaveis.get("b"));
-System.out.println(variaveis.get("c"));
 		nomeVariaveis = variaveis.keySet();
 	}
 	public void addCommand(Command c){
@@ -39,9 +36,6 @@ System.out.println(variaveis.get("c"));
 			f.write("public class "+name+"{\n");
 			f.write("    public static void main(String args[]){\n");
 			f.write("      java.util.Scanner "+INPUT+"=new java.util.Scanner(System.in);\n");
-			for(String s: nomeVariaveis){
-				f.write(" int "+s+";\n");
-			}
 			for(Command c: comandos){
 				f.write(c.toJava()+"\n");
 			}

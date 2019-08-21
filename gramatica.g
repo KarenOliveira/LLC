@@ -12,8 +12,7 @@ class MeuParser extends Parser;
     }
 }
 
-prog	: { mapaVar = new java.util.HashMap<String, String>(); 
-            CmdAttr ca =new CmdAttr();
+prog	: { mapaVar = new java.util.HashMap<String, String>();
           }
           "programa" declara bloco
    
@@ -21,10 +20,10 @@ prog	: { mapaVar = new java.util.HashMap<String, String>();
 		;
 
 declara : "declare" 
-              ("dec"|"num") T_Id {mapaVar.put(LT(0).getText(), LT(-1).getText());}
+              ("dec"|"num") T_Id {mapaVar.put(LT(0).getText(), LT(-1).getText());p.addCommand(new CmdDeclara(LT(0).getText(),LT(-1).getText()));}
               	( 
               		T_virg 
-              		("dec"|"num") T_Id {mapaVar.put(LT(0).getText(), LT(-1).getText());}
+              		("dec"|"num") T_Id {mapaVar.put(LT(0).getText(), LT(-1).getText());p.addCommand(new CmdDeclara(LT(0).getText(),LT(-1).getText()));}
               )* 
            
            T_pontof 
@@ -51,7 +50,7 @@ cmdLeia :  "leia" T_ap
                          }
 			
 						 
-						 p.addCommand(new CmdLeitura(LT(0).getText()));
+						 p.addCommand(new CmdLeitura(LT(0).getText(),mapaVar.get(LT(0).getText())));
                        } 
             T_fp
 		;
@@ -75,12 +74,11 @@ cmdAttr :  T_Id  {
 	                if (mapaVar.get(LT(0).getText()) == null){
 	                       throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!");
 	            	}
-			ca.setIdVar(LT(0).getText());
                  } 
            T_attr
-           expr {ca.setValor(LT(0).getText());}
+           expr 
 		;
-cmdIf : "se" T_ap fator T_rel fator T_fp "entao" (cmd)+  ("senao" T_ac (cmd)+ T_fc)?;
+cmdIf : "se" (fator T_rel fator) {p.addCommand(new CmdIf(LT(-2).getText(),LT(-1).getText(),LT(0).getText()));}"entao" (cmd)+ "end" ("senao" (cmd)+ "end")?;
 
 expr    :  termo (( T_soma | T_subt ) termo)*
 		;
@@ -96,6 +94,7 @@ fator   :  T_Id
              }
            }  
         |  T_num
+	|  T_dec
         |  T_ap expr T_fp
 		;
 

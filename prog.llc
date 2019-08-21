@@ -1,16 +1,15 @@
 programa
 declare num a,dec b,num c.
-	c := 2.
-	escreva("Digite o valor de A").
+	escreva("Digite o valor do num A").
 	leia( a ).
-	escreva("Digite o valor de B").
+	escreva("Digite o valor do dec B").
 	leia( b ).
-	escreva("Digite o valor de C").
+	escreva("Digite o valor de num C").
     leia( c ).	
 	escreva("Os valores que foram digitados").
-	se (a == 2) entao
+	se b==2 entao
 	escreva(a).
-	senao {escreva(b).}
+	end
 	escreva(b).
 	escreva( c ).
 	
