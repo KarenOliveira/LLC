@@ -13,7 +13,7 @@ class MeuParser extends Parser;
 }
 
 prog	: { mapaVar = new java.util.HashMap<String, String>(); 
-            
+            CmdAttr ca =new CmdAttr();
           }
           "programa" declara bloco
    
@@ -71,13 +71,14 @@ cmdEscr :  "escreva" T_ap (
 		   T_fp
 		;
 
-cmdAttr :  T_Id  {
+cmdAttr :  T_Id  {	
 	                if (mapaVar.get(LT(0).getText()) == null){
-                       throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!");
-                   }
+	                       throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!");
+	            	}
+			ca.setIdVar(LT(0).getText());
                  } 
-           T_attr 
-           expr
+           T_attr
+           expr {ca.setValor(LT(0).getText());}
 		;
 cmdIf : "se" T_ap fator T_rel fator T_fp "entao" (cmd)+  ("senao" T_ac (cmd)+ T_fc)?;
 
