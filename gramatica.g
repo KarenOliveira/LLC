@@ -24,7 +24,7 @@ declara : "declare"
               ("dec"|"num") T_Id {mapaVar.put(LT(0).getText(), LT(-1).getText());}
               	( 
               		T_virg 
-              		(|"dec"|"num") T_Id {mapaVar.put(LT(0).getText(), LT(-1).getText());}
+              		("dec"|"num") T_Id {mapaVar.put(LT(0).getText(), LT(-1).getText());}
               )* 
            
            T_pontof 
@@ -49,6 +49,7 @@ cmdLeia :  "leia" T_ap
             	         if (mapaVar.get(LT(0).getText()) == null){
                             throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!");
                          }
+			
 						 
 						 p.addCommand(new CmdLeitura(LT(0).getText()));
                        } 
@@ -78,7 +79,7 @@ cmdAttr :  T_Id  {
            T_attr 
            expr
 		;
-cmdIf : "se" T_ap fator T_rel fator T_fp "entao" (cmd)+  ("senao" (cmd)+)?;
+cmdIf : "se" T_ap fator T_rel fator T_fp "entao" (cmd)+  ("senao" T_ac (cmd)+ T_fc)?;
 
 expr    :  termo (( T_soma | T_subt ) termo)*
 		;
@@ -144,6 +145,8 @@ T_texto  : '"' ( 'a'..'z' | '0'..'9' | ' ' | 'A'..'Z' )+ '"'
 T_attr	 : ":="
 		 ;
 T_rel : '<' | '>'|"<="|">="|"!="|"==";
+
+T_dec : ('0'..'9')+ '.' ('0'..'9')+;
 
 T_blank  : ( ' ' | '\n' {newline();}| '\r' | '\t') {_ttype=Token.SKIP;}
 	     ;
