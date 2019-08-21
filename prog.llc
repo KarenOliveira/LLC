@@ -7,7 +7,7 @@ declare num a,dec b,num c.
 	escreva("Digite o valor de num C").
     leia( c ).	
 	escreva("Os valores que foram digitados").
-	se b==2 entao
+	se b==6 entao
 	escreva(a).
 	end
 	escreva(b).
