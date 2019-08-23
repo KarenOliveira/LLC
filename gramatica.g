@@ -92,7 +92,7 @@ cmdIf	:	"se"
 		{
 			p.addCommand(new CmdIf(LT(1).getText(),LT(2).getText(),LT(3).getText()));
 		}
-		(expr T_rel expr)
+		(fator T_rel fator)
 		"entao"
 		(cmd)+ (
 		"senao"
@@ -106,7 +106,8 @@ cmdWhile:	"enquanto"
 		{
 			p.addCommand(new CmdWhile(LT(1).getText(),LT(2).getText(),LT(3).getText()));
 		}
-		(expr T_rel expr)
+		(expr (T_rel expr)+)
+		(cmd)+  end
 	;
 
 expr	:	termo (( T_soma | T_subt ) termo)*

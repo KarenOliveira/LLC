@@ -12,9 +12,7 @@ declare num a,dec b,num c.
 	end
 	escreva(b).
 	escreva( c ).
-	enquanto b > 0
-		a := a+1.
-		b := b-1.
+	a := a+1.
 	escreva(b).
 	escreva(a).
 fimprog
