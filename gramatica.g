@@ -41,6 +41,7 @@ cmd		:  cmdLeia    T_pontof
 		|  cmdAttr    T_pontof
 		|  cmdIf 
 		|  cmdDoWhile
+		|  cmdWhile
         ;   
         
 
@@ -75,6 +76,12 @@ cmdAttr :  T_Id  {
 	                if (mapaVar.get(LT(0).getText()) == null){
 	                       throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!");
 	            	}
+			String variable = LT(0).getText();
+			String value = "";
+			for(int i = 2;!LT(i).getText().equals(".")||LT(i).getText().equals("\b");i++){
+				value+=LT(i).getText();
+			}
+			p.addCommand(new CmdAttr(variable,value));
                  } 
            T_attr
            expr 
@@ -97,20 +104,16 @@ cmdDoWhile : "faca"
 			p.addCommand(new CmdDo());
 		}	
 		(cmd)+
+	     	"facaenquanto"
 		{
 			p.addCommand(new CmdEnd());
-		}
-	     "enquanto"
-		{
 			p.addCommand(new CmdWhile(LT(1).getText(),LT(2).getText(),LT(3).getText(), true));
 
 		}
 		(fator T_rel fator)
 		;
 
-cmdFor :
-	
-	;
+cmdWhile : "enquanto" {p.addCommand(new CmdWhile(LT(1).getText(),LT(2).getText(),LT(3).getText(),false));} (fator T_rel fator) (cmd)+ "break"{p.addCommand(new CmdEnd());};
 
 expr    :  termo (( T_soma | T_subt ) termo)*
 		;

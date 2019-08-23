@@ -5,6 +5,8 @@ public class CmdWhile extends Command {
 	private boolean doWhile = false;
 
 	public CmdWhile(String f1,String oRel,String f2, boolean doWhile){
+		System.out.println(f1);
+		System.out.println(f2);
 		this.fator1 = f1;
 		this.opRel = oRel;
 		this.fator2 = f2; 
