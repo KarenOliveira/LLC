@@ -5,11 +5,16 @@ declare num a,dec b,num c.
 	escreva("Digite o valor do dec B").
 	leia( b ).
 	escreva("Digite o valor de num C").
-    leia( c ).	
+    	leia( c ).	
 	escreva("Os valores que foram digitados").
 	se b==6 entao
 	escreva(a).
 	end
 	escreva(b).
 	escreva( c ).
+	enquanto b > 0
+		a := a+1.
+		b := b-1.
+	escreva(b).
+	escreva(a).
 fimprog
