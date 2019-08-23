@@ -75,6 +75,12 @@ cmdAttr :  T_Id  {
 	                if (mapaVar.get(LT(0).getText()) == null){
 	                       throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!");
 	            	}
+			String variable = LT(0).getText();
+			String value = "";
+			for(int i = 2;!LT(i).getText().equals(".")||LT(i).getText().equals("\b");i++){
+				value+=LT(i).getText();
+			}
+			p.addCommand(new CmdAttr(variable,value));
                  } 
            T_attr
            expr 
