@@ -78,7 +78,7 @@ cmdAttr :  T_Id  {
            T_attr
            expr 
 		;
-cmdIf : "se" {p.addCommand(new CmdIf(LT(1).getText(),LT(2).getText(),LT(3).getText()));}(fator T_rel fator) "entao" (cmd)+ ("senao" (cmd)+ end)? end;
+cmdIf : "se" {p.addCommand(new CmdIf(LT(1).getText(),LT(2).getText(),LT(3).getText()));}(fator T_rel fator) "entao" (cmd)+ ("senao" {p.addCommand(new CmdSenao());}(cmd)+ )? | end;
 
 expr    :  termo (( T_soma | T_subt ) termo)*
 		;
@@ -100,7 +100,6 @@ fator   :  T_Id
 end : "end"{
 	p.addCommand(new CmdEnd());
 };
-
 
 class MeuLexer extends Lexer;
 options{

@@ -12,5 +12,4 @@ declare num a,dec b,num c.
 	end
 	escreva(b).
 	escreva( c ).
-	
 fimprog
