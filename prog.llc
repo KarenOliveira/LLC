@@ -10,6 +10,8 @@ declare num a,dec b,num c.
 	se b==6 entao
 	escreva(a).
 	end
+	enquanto c > 2
 	escreva(b).
+	break
 	escreva( c ).
 fimprog

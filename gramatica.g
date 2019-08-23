@@ -40,6 +40,7 @@ cmd		:  cmdLeia    T_pontof
 		|  cmdEscr    T_pontof
 		|  cmdAttr    T_pontof
 		|  cmdIf 
+		|  cmdWhile
         ;   
         
 
@@ -79,6 +80,8 @@ cmdAttr :  T_Id  {
            expr 
 		;
 cmdIf : "se" {p.addCommand(new CmdIf(LT(1).getText(),LT(2).getText(),LT(3).getText()));}(fator T_rel fator) "entao" (cmd)+ ("senao" {p.addCommand(new CmdSenao());}(cmd)+ )? | end;
+
+cmdWhile : "enquanto" {p.addCommand(new CmdWhile(LT(1).getText(),LT(2).getText(),LT(3).getText()));} (fator T_rel fator) (cmd)+ "break"{p.addCommand(new CmdEnd());};
 
 expr    :  termo (( T_soma | T_subt ) termo)*
 		;
