@@ -14,10 +14,8 @@ class MeuParser extends Parser;
 
 prog	: { mapaVar = new java.util.HashMap<String, String>();
           }
-          "programa" declara bloco
-   
-          
-		;
+          "programa" declara bloco  
+	;
 
 declara : "declare" 
               ("dec"|"num") T_Id {mapaVar.put(LT(0).getText(), LT(-1).getText());p.addCommand(new CmdDeclara(LT(0).getText(),LT(-1).getText()));}
@@ -31,15 +29,15 @@ declara : "declare"
 		      p.setVariaveis(mapaVar);
 			  System.out.println("Variable list assembled...");
 		   }
-		;
+	;
 
 bloco   : (cmd)+ "fimprog"
-		;
+	;
 
-cmd		:  cmdLeia    T_pontof  
-		|  cmdEscr    T_pontof
-		|  cmdAttr    T_pontof
-		|  cmdIf 
+cmd	:  cmdLeia    T_pontof  
+	|  cmdEscr    T_pontof
+	|  cmdAttr    T_pontof
+	|  cmdIf 
         ;   
         
 
@@ -102,56 +100,48 @@ end : "end"{
 };
 
 class MeuLexer extends Lexer;
-options{
+
+options {
 	caseSensitive = true;
-	k=7;
+	k = 7;
 }
-T_Id	 : ('a'..'z' | 'A'..'Z') ('a'..'z'| 'A'..'Z'| '0'..'9')*
-		 ;
-		 
-T_comm   : "//"
-		 ;
 
-T_num	 : ('0'..'9')+
-		 ;
-
-T_soma   : '+'
-		 ;
-
-T_subt   : '-'
-		 ;
-
-T_mult   : '*'
-		 ;
-
-T_divi   : '/'
-		 ;
-
-T_virg   : ','
-		 ;
-
-T_pontof : '.'
-		 ;
-
-T_ap	 : '('
-		 ;
-
-T_fp     : ')'
-		 ;
-T_ac     :  '{' ;
-T_fc     :  '}';
-
-T_texto  : '"' ( 'a'..'z' | '0'..'9' | ' ' | 'A'..'Z' )+ '"'
-		 ;
-
-T_attr	 : ":="
-		 ;
-T_rel : '<' | '>'|"<="|">="|"!="|"==";
-
-T_dec : ('0'..'9')+ '.' ('0'..'9')+;
-
-T_blank  : ( ' ' | '\n' {newline();}| '\r' | '\t') {_ttype=Token.SKIP;}
-	     ;
+T_Id		: ('a'..'z' | 'A'..'Z') ('a'..'z'| 'A'..'Z'| '0'..'9')*
+		;
+T_comm		: "//"
+		;
+T_num		: ('0'..'9')+
+		;
+T_soma		: '+'
+		;
+T_subt		: '-'
+		;
+T_mult		: '*'
+		;
+T_divi		: '/'
+		;
+T_virg		: ','
+		;
+T_pontof	: '.'
+		;
+T_ap		: '('
+		;
+T_fp    	: ')'
+		;
+T_ac    	: '{'
+		;
+T_fc		: '}'
+		;
+T_texto		: '"' ( 'a'..'z' | '0'..'9' | ' ' | 'A'..'Z' )+ '"'
+		;
+T_attr		: ":="
+		;
+T_rel		: '<' | '>'|"<="|">="|"!="|"=="
+		;
+T_dec		: ('0'..'9')+ '.' ('0'..'9')+
+		;
+T_blank		: ( ' ' | '\n' {newline();}| '\r' | '\t') {_ttype=Token.SKIP;}
+		;
 
 
 
