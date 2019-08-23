@@ -1,1 +1,1 @@
-java -cp antlr.jar:. IsiComp Teste < prog.isi
+java -cp antlr.jar:. LLComp Teste < prog.llc

@@ -40,6 +40,7 @@ cmd		:  cmdLeia    T_pontof
 		|  cmdEscr    T_pontof
 		|  cmdAttr    T_pontof
 		|  cmdIf 
+		|  cmdDoWhile
         ;   
         
 
@@ -78,7 +79,38 @@ cmdAttr :  T_Id  {
            T_attr
            expr 
 		;
-cmdIf : "se" {p.addCommand(new CmdIf(LT(1).getText(),LT(2).getText(),LT(3).getText()));}(fator T_rel fator) "entao" (cmd)+ ("senao" {p.addCommand(new CmdSenao());}(cmd)+ )? | end;
+cmdIf : "se" 
+		{
+			p.addCommand(new CmdIf(LT(1).getText(),LT(2).getText(),LT(3).getText()));
+		}
+		(fator T_rel fator) 
+		"entao" 
+		(cmd)+ (
+		"senao" 
+		{
+			p.addCommand(new CmdSenao());
+		}
+		(cmd)+ )? | end;
+
+cmdDoWhile : "faca" 
+		{
+			p.addCommand(new CmdDo());
+		}	
+		(cmd)+
+		{
+			p.addCommand(new CmdEnd());
+		}
+	     "enquanto"
+		{
+			p.addCommand(new CmdWhile(LT(1).getText(),LT(2).getText(),LT(3).getText(), true));
+
+		}
+		(fator T_rel fator)
+		;
+
+cmdFor :
+	
+	;
 
 expr    :  termo (( T_soma | T_subt ) termo)*
 		;
@@ -139,6 +171,7 @@ T_ap	 : '('
 T_fp     : ')'
 		 ;
 T_ac     :  '{' ;
+
 T_fc     :  '}';
 
 T_texto  : '"' ( 'a'..'z' | '0'..'9' | ' ' | 'A'..'Z' )+ '"'

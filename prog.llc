@@ -12,4 +12,8 @@ declare num a,dec b,num c.
 	end
 	escreva(b).
 	escreva( c ).
+	faca
+		escreva(a).
+		escreva(b).
+	enquanto b > 0
 fimprog
