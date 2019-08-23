@@ -1,0 +1,16 @@
+programa
+declare num a,dec b,num c.
+	escreva("Digite o valor do num A").
+	leia( a ).
+	escreva("Digite o valor do dec B").
+	leia( b ).
+	escreva("Digite o valor de num C").
+    leia( c ).	
+	escreva("Os valores que foram digitados").
+	se b==6 entao
+	escreva(a).
+	end
+	escreva(b).
+	escreva( c ).
+	
+fimprog
