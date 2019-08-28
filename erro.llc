@@ -1,0 +1,25 @@
+programa
+declare num a,dec b,num c.
+	escreva("Digite o valor do num A").
+	leia( a )
+	a := b +2.
+	escreva("Digite o valor do dec B").
+	leia( b ).
+	escreva("Digite o valor de num C").
+    leia( c ).	
+	escreva("Os valores que foram digitados").
+	se b==6 entao
+	escreva(a).
+	end
+	enquanto a > 2
+	escreva(b).
+	break
+	
+	escreva( c ).
+	faca
+		escreva(a).
+		escreva(b).
+	facaenquanto b > 0
+fimprog
+
+

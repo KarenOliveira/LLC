@@ -17,7 +17,7 @@ public class CmdDeclara extends Command{
 			return "int " + this.variavel+";";
 		}
 		else{
-			return "float " + this.variavel+";";
+			return "double " + this.variavel+";";
 		}
 	}	
 }
